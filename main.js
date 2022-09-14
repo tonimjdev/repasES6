@@ -1,5 +1,6 @@
 "use strict";
-// Métodos Array
+//**** ECMAScript6 ****/
+// MÉTODOS ARRAY
 
 //1// map() -> Permite recorrer el array y modificar los elementos presentes en él,
 // retornando un nuevo array con la misma longitud que el original.
@@ -219,3 +220,45 @@ console.log("Array.isArray(undefined)",Array.isArray(undefined)); // false
 
 //25// Array.from() -> Crea una nueva instancia de Array a partir de un objeto iterable.
 console.log("Array.from('hola'); ",Array.from('hola')); // ['h', 'o', 'l', 'a']
+
+// PRUEBAS DOM
+// Función para elegir color al azar
+const colorRandom = () => {
+  const colores = ["yellow", "red", "violet", "coral", "gold", "salmon"];
+  let colorAleatorio = Math.floor((Math.random()*6));
+  console.log('Color elegido: ', colores[colorAleatorio]);
+  return colores[colorAleatorio];
+}
+// Función para mostrar datos login en el DOM
+const login = () => {
+  const email = document.getElementById('email').value;
+  const password = document.getElementById('password').value;
+  const textoRespuesta = `Su e-mail es <b>${email}</b> y su contraseña es ${password}`;
+  document.getElementById('respuesta').innerHTML = textoRespuesta;
+  let respuesta = document.getElementById('respuesta');
+  respuesta.style.backgroundColor = colorRandom(); // Dar color de fondo al azar
+}
+
+// PRUEBAS API REST
+// API Pokémon
+  let pokeDOM = "";
+  const getPokemon = async () => {
+    console.log("pokeDOM dentro promesa: ", pokeDOM);
+    try {
+      let pokemon = await fetch("https://pokeapi.co/api/v2/pokemon/"+pokeDOM+"/");
+      let datos = await pokemon.json();
+      console.log('GET Pokémon: ', datos);
+      let urlImage = datos.sprites.front_default;
+      console.log('url image: ', urlImage);
+      document.getElementById('pokemon').src = urlImage;
+    } catch (error) {
+      console.log(error);
+    }
+} 
+const llamarPokemon = () => {
+  pokeDOM = document.getElementById('eligePoke').value
+  console.log('Pokémon elegido: ',pokeDOM);
+  getPokemon();
+}
+
+
