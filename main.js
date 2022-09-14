@@ -196,69 +196,79 @@ console.log("Array; ", arrayStr);
 arrayStr.splice(1, 0, "banana"); // 1 -> posición a incorporar nuevo elemento // 0 -> cuantas posiciones eliminar a partir del elemento añadido
 console.log("arrayStr.splice(1, 0, 'banana')", arrayStr); // ['apple', 'banana', 'orange', 'pear']
 
-//22// lastIndexOf() -> Busca un elemento en un array y devuelve su posición. 
+//22// lastIndexOf() -> Busca un elemento en un array y devuelve su posición.
 // Comienza buscando por el final del array. Retorna -1 si el elemento no se encontrara.
 // *** Encuentra en el array la posición del último "apple" añadido
 arrayStr = ["apple", "orange", "pear", "apple"];
 console.log("Array; ", arrayStr);
-resultArray = arrayStr.lastIndexOf('apple');
-console.log ("arrayStr.lastIndexOf('apple'); ", resultArray); // 3
+resultArray = arrayStr.lastIndexOf("apple");
+console.log("arrayStr.lastIndexOf('apple'); ", resultArray); // 3
 
-//23// flat() -> Crea una nuevo array con todos los elementos de sub-array concatenados 
+//23// flat() -> Crea una nuevo array con todos los elementos de sub-array concatenados
 // recursivamente hasta la profundidad especificada.
-array = [1,2,3,4,5,[6,7,[8,9]]];
-const unNivel = array.flat();  // () o (1) -> un nivel de array anidado
+array = [1, 2, 3, 4, 5, [6, 7, [8, 9]]];
+const unNivel = array.flat(); // () o (1) -> un nivel de array anidado
 const dosNiveles = array.flat(2); // (2) -> 2 niveles de arrays anidados
-console.log("array.flat(); ",unNivel) // [1, 2, 3, 4, 5, 6, 7, [8, 9]]
-console.log("array.flat(2); ",dosNiveles); // [1, 2, 3, 4, 5, 6, 7, 8, 9]
+console.log("array.flat(); ", unNivel); // [1, 2, 3, 4, 5, 6, 7, [8, 9]]
+console.log("array.flat(2); ", dosNiveles); // [1, 2, 3, 4, 5, 6, 7, 8, 9]
 
 //24// Array.isArray() -> Determina si el valor pasado es un Array (devuelve true o false)
-console.log("Array.isArray([1,2,3,4,5]) ",Array.isArray([1,2,3,4,5])); // true
-console.log("Array.isArray({nombre: 'pepe'})",Array.isArray({nombre: 'pepe'})); // false
-console.log("Array.isArray('apple')",Array.isArray('apple')); // false
-console.log("Array.isArray(undefined)",Array.isArray(undefined)); // false
+console.log("Array.isArray([1,2,3,4,5]) ", Array.isArray([1, 2, 3, 4, 5])); // true
+console.log("Array.isArray({nombre: 'pepe'})", Array.isArray({ nombre: "pepe" })); // false
+console.log("Array.isArray('apple')", Array.isArray("apple")); // false
+console.log("Array.isArray(undefined)", Array.isArray(undefined)); // false
 
 //25// Array.from() -> Crea una nueva instancia de Array a partir de un objeto iterable.
-console.log("Array.from('hola'); ",Array.from('hola')); // ['h', 'o', 'l', 'a']
+console.log("Array.from('hola'); ", Array.from("hola")); // ['h', 'o', 'l', 'a']
 
 // PRUEBAS DOM
 // Función para elegir color al azar
 const colorRandom = () => {
   const colores = ["yellow", "red", "violet", "coral", "gold", "salmon"];
-  let colorAleatorio = Math.floor((Math.random()*6));
-  console.log('Color elegido: ', colores[colorAleatorio]);
+  let colorAleatorio = Math.floor(Math.random() * 6);
+  console.log("Color elegido: ", colores[colorAleatorio]);
   return colores[colorAleatorio];
-}
+};
 // Función para mostrar datos login en el DOM
 const login = () => {
-  const email = document.getElementById('email').value;
-  const password = document.getElementById('password').value;
+  const email = document.getElementById("email").value;
+  const password = document.getElementById("password").value;
   const textoRespuesta = `Su e-mail es <b>${email}</b> y su contraseña es ${password}`;
-  document.getElementById('respuesta').innerHTML = textoRespuesta;
-  let respuesta = document.getElementById('respuesta');
+  document.getElementById("respuesta").innerHTML = textoRespuesta;
+  let respuesta = document.getElementById("respuesta");
   respuesta.style.backgroundColor = colorRandom(); // Dar color de fondo al azar
-}
+};
 
 // PRUEBAS API REST
 // API Pokémon
-  let pokeDOM = "";
-  const getPokemon = async () => {
-    console.log("pokeDOM dentro promesa: ", pokeDOM);
-    try {
-      let pokemon = await fetch("https://pokeapi.co/api/v2/pokemon/"+pokeDOM+"/");
-      let datos = await pokemon.json();
-      console.log('GET Pokémon: ', datos);
-      let urlImage = datos.sprites.front_default;
-      console.log('url image: ', urlImage);
-      document.getElementById('pokemon').src = urlImage;
-    } catch (error) {
-      console.log(error);
-    }
-} 
+let pokeDOM = "";
+
+const getPokemon = async () => {
+  console.log("pokeDOM dentro promesa: ", pokeDOM);
+  try {
+    let pokemon = await fetch("https://pokeapi.co/api/v2/pokemon/" + pokeDOM + "/");
+    let datos = await pokemon.json();
+    console.log("GET Pokémon: ", datos);
+    let urlImage = datos.sprites.front_default;
+    let nomPoke = datos.name;
+    let urlHabilitats = datos.abilities[0].ability.url;
+    console.log("url habilitats: ", urlHabilitats);
+    console.log("url image: ", urlImage);
+    document.getElementById("pokemon").src = urlImage;
+    document.getElementById("nombrePoke").innerHTML = nomPoke;
+
+    let abilities = await fetch(urlHabilitats);
+    let datos2 = await abilities.json();
+    let habilitats = datos2.effect_entries[1].effect;
+    console.log("habilitats: ", habilitats);
+    document.getElementById("habilidades").innerHTML = habilitats;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 const llamarPokemon = () => {
-  pokeDOM = document.getElementById('eligePoke').value
-  console.log('Pokémon elegido: ',pokeDOM);
+  pokeDOM = document.getElementById("eligePoke").value;
+  console.log("Pokémon elegido: ", pokeDOM);
   getPokemon();
-}
-
-
+};

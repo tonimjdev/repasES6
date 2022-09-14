@@ -1,25 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
     <title>Repaso ES6</title>
-</head>
-<body>
-    <h1>Título</h1>
-    <p>Párrafo</p>
-    <hr>
-    <h3>Login</h3>
-    <p>E-mail: <input id="email" name="email" type="email"/></p>
-    <p>Password: <input id="password" name="password" type="password"/></p>
-    <button id="login" onclick="login()">Enviar</button>
-    <p id="respuesta" class="reponse"></p>
-    <hr>
-    <h2>Api Pokémon</h2>
-    <p>Elige un Pokémon: <input id="eligePoke" type="text"/></p>
-    <button id="elegirPokemon" onclick="llamarPokemon('eligePoke')">Llamar Pokémon</button>
-    <p><img src="" id="pokemon"/></p>
-    <script src="main.js"></script>
-</body>
+  </head>
+  <body>
+    <header>
+      <h1>ECMAScript 6</h1>
+      <p>Repaso</p>
+    </header>
+    <main>
+      <h2>Login</h2>
+      <div class="user">
+        <p>E-mail: <input id="email" name="email" type="email" /></p>
+        <p>Password: <input id="password" name="password" type="password" /></p>
+      </div>
+      <button id="login" onclick="login()">Enviar</button>
+      <p id="respuesta" class="reponse"></p>
+      <h2>Api Pokémon</h2>
+      <p class="userPoke">Elige un Pokémon: <input id="eligePoke" type="text" /></p>
+      <button id="elegirPokemon" onclick="llamarPokemon('eligePoke')">Llamar Pokémon</button>
+      <p><img src="" id="pokemon" /></p>
+      <p id="nombrePoke"></p>
+      <div class="descPoke">
+        <p id="habilidades"></p>
+      </div>
+      <script src="main.js"></script>
+    </main>
+  </body>
 </html>

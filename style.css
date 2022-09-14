@@ -1,0 +1,74 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: "Montserrat", sans-serif;
+  align-items: center;
+  background-color: rgb(174, 211, 211);
+  margin: auto;
+}
+header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 2em;
+  background-color: rgb(78, 95, 95);
+  color: #fff;
+  padding: 0.8em;
+  gap: 0.5em;
+}
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.2em;
+}
+.user {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+}
+.user input {
+  font-size: 1.1em;
+}
+.userPoke {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+}
+.userPoke input {
+  font-size: 1.1em;
+}
+.reponse {
+  padding: 0.8em 1.4em;
+  border-radius: 8px;
+}
+button {
+  font-size: 1.1em;
+  padding: 0.4em 1em;
+  border-radius: 10px;
+  border: none;
+  box-shadow: 0.5em 0.2em 0.6em rgb(155, 155, 155);
+}
+button:hover {
+  cursor: pointer;
+}
+button:active {
+  background-color: rgb(215, 215, 215);
+}
+.descPoke {
+  background-color: rgb(57, 57, 57);
+  color: #fff;
+  border-radius: 50px;
+  padding: 1.2em 1.5em;
+  text-align: center;
+}
+#nombrePoke {
+  font-size: 1.2em;
+  font-weight: 700;
+}
+#habilidades {
+  max-width: 500px;
+}
